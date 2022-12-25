@@ -1,0 +1,46 @@
+{
+    "name": "docker-mailserver-account-creator",
+    "version": "1.1.1",
+    "description": "Account creator for docker-mailserver",
+    "main": "app.js",
+    "bin": "app.js",
+    "scripts": {
+      "start": "node app.js",
+      "obfuscate": "node obfuscator.js",
+      "build-linux-arm64": "npm run obfuscate && pkg . -t node18-linux-arm64 && mkdir account-creator && mv docker-mailserver-account-creator account-creator && cp .env account-creator",
+      "build-linux-x64": "npm run obfuscate && pkg . -t node18-linux-x64 && mkdir account-creator && mv docker-mailserver-account-creator account-creator && cp .env account-creator",
+      "clean": "rm public/utils.js && rm -rf account-creator"
+    },
+    "keywords": [
+      "accounts",
+      "creation"
+    ],
+    "author": "Gamesmes90",
+    "license": "GPL-3.0-or-later",
+    "dependencies": {
+      "body-parser": "^1.20.1",
+      "child_process": "^1.0.2",
+      "dotenv": "^16.0.3",
+      "express": "^4.18.2",
+      "javascript-obfuscator": "^4.0.0"
+    },
+    "pkg": {
+      "scripts": [
+        "app.js",
+        "public/jquery.min.js",
+        "public/utils.js"
+      ],
+      "assets": [
+        "public/**/*",
+        "pass_reset.html",
+        "reset.html",
+        "public/favicon-32x32x.png"
+      ],
+      "targets": [
+        "node18",
+        "node18-linux-arm64",
+        "node18-linux-x64"
+      ]
+    }
+  }
+  
