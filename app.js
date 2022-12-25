@@ -22,16 +22,14 @@ app.post('/create', urlencodedParser, (req, res) => {
         return res.status(500).send("<h4 style='text-align:center'>Please insert a username</h4>");
     }
     exec("../setup.sh email add " + req.body.username + "@" + process.env.DOMAIN + " " + req.body.password, function(err,stdout,stderr){
-        console.log(stderr);
+        console.log(stdout);
         if(stderr != ""){
-            if(stderr.includes("already exists")){
-                res.status(400).send("<h4 style='text-align:center; font-weight: bold; color: black;'>Error: this email account already exists</h4>");
-                console.log('[' + new Date().toUTCString() + '] '+"Error while creating account of user", req.body.username+": The account already exists");
-            }
-            else{
-                res.status(400).send("<h4 style='text-align:center; font-weight: bold; color: black;'>There was an error while creating the account</h4>");
-                console.log('[' + new Date().toUTCString() + '] '+"Error while creating account of user", req.body.username);
-            }
+            res.status(400).send("<h4 style='text-align:center; font-weight: bold; color: black;'>There was an error while creating the account</h4>");
+            console.log('[' + new Date().toUTCString() + '] '+"Error while creating account of user", req.body.username);
+        }
+        else if(stdout.includes("already exists")){
+            res.status(400).send("<h4 style='text-align:center; font-weight: bold; color: black;'>Error: this email account already exists</h4>");
+            console.log('[' + new Date().toUTCString() + '] '+"Error while creating account of user", req.body.username+": The account already exists");
         }
         else{
             var output = "<h4 style='text-align:center; font-weight: bold; color: black;'>Account "
