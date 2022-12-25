@@ -27,13 +27,11 @@
     "pkg": {
       "scripts": [
         "app.js",
-        "public/jquery.min.js",
         "public/utils.js"
       ],
       "assets": [
         "public/**/*",
-        "pass_reset.html",
-        "reset.html",
+        "create_account.html",
         "public/favicon-32x32x.png"
       ],
       "targets": [
