@@ -1,5 +1,5 @@
 # Docker mailserver Account Creator
-This is a small node js application to interface with the setup.sh file of docker-mailserver.
+This is a small node js application to interface with the setup.sh file of [docker-mailserver](https://github.com/docker-mailserver/docker-mailserver).
 
 It allows the user to create an account without having to go through the server administrator.
 
